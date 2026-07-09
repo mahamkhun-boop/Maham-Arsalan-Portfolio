@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Content Strategy Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F2E9;
+    --card:#FFFDF8;
+    --ink:#211D16;
+    --ink-soft:#4B463C;
+    --rule:#D3CBB4;
+    --ochre:#B0791E;
+    --ochre-soft:#F1E2C4;
+    --moss:#4C6249;
+    --moss-soft:#E4E9DD;
+    --rust:#8A4630;
+    --rust-soft:#F0DFD5;
+    --max-w:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  ::selection{background:var(--ochre-soft);}
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,242,233,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;letter-spacing:-0.01em;}
+  .brand span{color:var(--ochre);}
+  .navlinks{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .navlinks a{
+    color:var(--ink-soft);text-decoration:none;font-size:0.92rem;font-weight:500;
+    border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s, color .2s;
+  }
+  .navlinks a:hover{color:var(--ink);border-color:var(--ochre);}
+  @media(max-width:640px){.navlinks{display:none;}}
+
+  /* HERO */
+  header.hero{padding:88px 0 64px;border-bottom:1px solid var(--rule);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--ochre);margin-bottom:18px;display:inline-block;
+    border:1px solid var(--ochre); border-radius:2px; padding:4px 9px;
+  }
+  h1.title{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.08;letter-spacing:-0.015em;max-width:14ch;}
+  h1.title em{font-style:italic;color:var(--ochre);}
+  .lede{font-size:1.15rem;color:var(--ink-soft);max-width:56ch;margin-top:22px;}
+  .stat-strip{display:flex;flex-wrap:wrap;gap:36px;margin-top:44px;}
+  .stat b{font-family:'Fraunces',serif;font-size:1.9rem;display:block;font-weight:600;}
+  .stat span{font-size:0.82rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+
+  /* APPROACH / MANIFESTO */
+  section.approach{padding:64px 0;border-bottom:1px solid var(--rule);}
+  .approach-grid{display:grid;grid-template-columns:1.1fr 1.4fr;gap:48px;}
+  @media(max-width:760px){.approach-grid{grid-template-columns:1fr;}}
+  section.approach h2{font-size:1.9rem;max-width:12ch;}
+  .approach-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;}
+  .approach-list li{padding-left:30px;position:relative;}
+  .approach-list li::before{
+    content:attr(data-n);position:absolute;left:0;top:1px;
+    font-family:'IBM Plex Mono',monospace;color:var(--ochre);font-size:0.85rem;
+  }
+  .approach-list h4{font-size:1.02rem;margin-bottom:4px;}
+  .approach-list p{margin:0;color:var(--ink-soft);font-size:0.94rem;}
+
+  /* FLAGSHIP CLUSTER CALLOUT */
+  .cluster-box{
+    margin-top:64px;background:var(--card);border:1px solid var(--rule);
+    border-left:4px solid var(--ochre); border-radius:3px;padding:32px;
+  }
+  .cluster-box .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.74rem;text-transform:uppercase;
+    letter-spacing:0.06em;color:var(--ochre);
+  }
+  .cluster-box h3{font-size:1.4rem;margin-top:8px;max-width:34ch;}
+  .cluster-box p{color:var(--ink-soft);margin-top:10px;max-width:64ch;}
+  .cluster-nodes{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .node{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;background:var(--moss-soft);
+    color:var(--moss);border-radius:20px;padding:6px 14px;
+  }
+
+  /* NICHE SECTIONS */
+  section.niche{padding:64px 0;border-bottom:1px solid var(--rule);}
+  .niche-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap;}
+  .niche-head h2{font-size:2rem;}
+  .niche-count{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--ink-soft);}
+  .niche-desc{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:40px;}
+
+  .case{
+    background:var(--card);border:1px solid var(--rule);border-radius:4px;
+    margin-bottom:28px;overflow:hidden;
+  }
+  .case-head{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:20px 26px;cursor:pointer;
+  }
+  .case-head h3{font-size:1.18rem;max-width:44ch;}
+  .case-meta{font-family:'IBM Plex Mono',monospace;font-size:0.74rem;color:var(--ink-soft);white-space:nowrap;}
+  .chevron{transition:transform .25s;color:var(--ochre);font-size:1.1rem;flex-shrink:0;}
+  .case.open .chevron{transform:rotate(90deg);}
+  .case-body{
+    max-height:0;overflow:hidden;transition:max-height .35s ease;
+    border-top:1px solid transparent;
+  }
+  .case.open .case-body{border-top:1px solid var(--rule);}
+  .case-body-inner{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+  }
+  @media(max-width:700px){.case-body-inner{grid-template-columns:1fr;}}
+  .manuscript{
+    padding:24px 26px;border-right:1px solid var(--rule);
+  }
+  @media(max-width:700px){.manuscript{border-right:none;border-bottom:1px solid var(--rule);}}
+  .manuscript .label{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;color:var(--ink-soft);letter-spacing:0.06em;margin-bottom:10px;display:block;}
+  .manuscript blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;line-height:1.55;
+    margin:0;color:var(--ink);
+  }
+  .manuscript blockquote::before{content:"\201C";color:var(--ochre);}
+  .manuscript blockquote::after{content:"\201D";color:var(--ochre);}
+  .annotations{padding:24px 26px;background:#FBF9F3;}
+  .annotations .label{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;color:var(--ochre);letter-spacing:0.06em;margin-bottom:12px;display:block;}
+  .note{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;}
+  .note:last-child{margin-bottom:0;}
+  .note .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--ochre);margin-top:8px;flex-shrink:0;
+  }
+  .note p{margin:0;font-size:0.9rem;color:var(--ink-soft);}
+  .note b{color:var(--ink);font-weight:600;}
+
+  /* FOOTER / CONTACT */
+  footer{padding:72px 0 60px;}
+  footer h2{font-size:2rem;max-width:16ch;}
+  footer p.lede{margin-top:16px;}
+  .contact-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:0.85rem;text-decoration:none;
+    padding:12px 22px;border-radius:3px;border:1px solid var(--ink);color:var(--ink);
+    transition:background .2s, color .2s;
+  }
+  .btn.primary{background:var(--ink);color:var(--paper);}
+  .btn:hover{background:var(--ochre);border-color:var(--ochre);color:#fff;}
+  .fineprint{margin-top:56px;padding-top:24px;border-top:1px solid var(--rule);font-size:0.8rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">[Your Name]<span>.</span></div>
+    <ul class="navlinks">
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#health">Health &amp; Wellness</a></li>
+      <li><a href="#home">Home &amp; Real Estate</a></li>
+      <li><a href="#business">Business &amp; Career</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">SEO Content Strategist &amp; Writer</span>
+    <h1 class="title">Content that ranks. Strategy you can <em>actually see</em>.</h1>
+    <p class="lede">Ten years writing SEO content across health, home &amp; real estate, and business — mostly ghostwritten, always strategic. This is the thinking behind the words: keyword intent, structure, and link placement, laid out case by case.</p>
+    <div class="stat-strip">
+      <div class="stat"><b>10+</b><span>YEARS WRITING</span></div>
+      <div class="stat"><b>95+</b><span>SEO ARTICLES SHIPPED</span></div>
+      <div class="stat"><b>3</b><span>CORE NICHES</span></div>
+      <div class="stat"><b>1</b><span>CONTENT CLUSTER FEATURED BELOW</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="approach-grid">
+      <div>
+        <h2>How I approach a brief</h2>
+      </div>
+      <ul class="approach-list">
+        <li data-n="01"><h4>Structure serves search intent</h4><p>Numbered listicles for skimmable, snippet-friendly answers. Narrative essays when a topic needs argument, not a checklist. The format is a decision, not a default.</p></li>
+        <li data-n="02"><h4>Every link earns its place</h4><p>When a piece is written to support link building, the contextual link sits inside a sentence that would exist anyway — never bolted on. Anchor text matches commercial intent without breaking the read.</p></li>
+        <li data-n="03"><h4>Local and niche targeting</h4><p>Geo-modified angles (a renovation piece written for an Indianapolis audience, a plumbing link for a Northwich readership) so content serves both the reader and the client's local SEO goals.</p></li>
+        <li data-n="04"><h4>E-E-A-T where it matters</h4><p>Health and finance content cites real studies, government sources, and named organizations — because YMYL topics get held to a higher bar, by readers and by Google.</p></li>
+      </ul>
+    </div>
+
+    <div class="cluster-box">
+      <span class="tag">Flagship case study — content clustering</span>
+      <h3>One client, one hazard, four angles: an asbestos/mesothelioma content cluster</h3>
+      <p>Rather than one generic article, this client's asbestos-exposure topic was built out across four distinct entry points — each targeting a different search intent and audience, each linking back to the same commercial cluster (legal and medical resources). This is what a real topic cluster looks like in practice, not just four keywords stuffed into one post.</p>
+      <div class="cluster-nodes">
+        <span class="node">General health risk &amp; prevention</span>
+        <span class="node">Occupational / workplace angle</span>
+        <span class="node">Veterans health angle</span>
+        <span class="node">Demolition &amp; construction angle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="niche" id="health">
+  <div class="wrap">
+    <div class="niche-head">
+      <h2>Health &amp; Wellness</h2>
+      <span class="niche-count mono">24 articles in archive · 6 featured</span>
+    </div>
+    <p class="niche-desc">Evergreen, YMYL-aware health content — from occupational hazard education to mental health support guides. Built for trust signals as much as for rankings.</p>
+    <div id="health-cases"></div>
+  </div>
+</section>
+
+<section class="niche" id="home">
+  <div class="wrap">
+    <div class="niche-head">
+      <h2>Home, Real Estate &amp; Renovation</h2>
+      <span class="niche-count mono">17 articles in archive · 6 featured</span>
+    </div>
+    <p class="niche-desc">Budget renovation guides, landlord and resale-value content, and B2B home-services pieces — often geo-targeted for local service clients.</p>
+    <div id="home-cases"></div>
+  </div>
+</section>
+
+<section class="niche" id="business">
+  <div class="wrap">
+    <div class="niche-head">
+      <h2>Business, Career &amp; Leadership</h2>
+      <span class="niche-count mono">22 articles in archive · 6 featured</span>
+    </div>
+    <p class="niche-desc">B2B leadership and career-education content — communication frameworks for CEOs, org-structure guides, and balanced argumentative pieces on education vs. entrepreneurship.</p>
+    <div id="business-cases"></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Let's work together</span>
+    <h2>Have an SEO content project in mind?</h2>
+    <p class="lede">I write for health, home &amp; real estate, and business niches — with the same strategic thinking shown above applied to your brief.</p>
+    <div class="contact-row">
+      <a class="btn primary" href="mailto:[your@email.com]">Email me</a>
+      <a class="btn" href="[your-portfolio-link]">More samples</a>
+    </div>
+    <div class="fineprint">Excerpts shown are short samples from client work; full pieces were written on a ghostwritten, work-for-hire basis. Strategy notes reflect the author's own analysis.</div>
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  health: [
+    {
+      title: "Asbestos Exposure: Health Risks and How to Avoid It",
+      words: 1106, cluster: true,
+      excerpt: "This naturally occurring fibrous mineral has been found to be extremely dangerous to human health... repeated exposure to asbestos fiber can lead to serious health conditions such as lung problems and cancer.",
+      notes: [
+        ["Search intent", "Targets informational long-tail ('asbestos exposure health risks') with H2s that mirror People Also Ask questions — how, what, how to avoid."],
+        ["Link placement", "A contextual link to a mesothelioma-doctor resource sits inside a sentence about seeking diagnosis — commercial intent, non-disruptive placement."],
+        ["E-E-A-T", "Cites WHO and OSHA sources, recommends professional consultation — appropriate caution for YMYL health content."]
+      ]
+    },
+    {
+      title: "Workplace Health: How to Reduce the Risk of Occupational Cancer",
+      words: 912, cluster: true,
+      excerpt: "Carcinogens or cancer-causing agents are responsible for occupational cancer... at least 100,000 deaths worldwide are caused by asbestos-related diseases.",
+      notes: [
+        ["Angle", "Same hazard as the piece above, reframed for a workplace-safety and legal-compensation audience — part of the four-angle cluster."],
+        ["Authority", "References the UK Health and Safety at Work Act 1974 for regulatory credibility."],
+        ["Link placement", "Mesothelioma-lawsuit anchor text embedded within a compliance-focused, non-salesy paragraph."]
+      ]
+    },
+    {
+      title: "5 Reasons You Should Avoid Self-Diagnosis",
+      words: 885,
+      excerpt: "We've all been there where we try to find the answers to our symptoms from Google... when you take help from Dr. Google and self-diagnose, you end up doing more harm than good.",
+      notes: [
+        ["Hook", "Opens on a relatable behavior (Googling symptoms) before pivoting to the risk — classic problem–agitate–solve listicle shape."],
+        ["Link strategy", "An online-doctor platform is introduced as the 'safer alternative' — the link sits at the resolution point of the argument, not just dropped in."],
+        ["Tone", "Reassuring rather than alarmist, appropriate for anxious health searchers."]
+      ]
+    },
+    {
+      title: "How to Help a Friend or Someone with PTSD",
+      words: 865,
+      excerpt: "The worst thing about PTSD is that it also affects the family and friends of the sufferer... with the right type of support, people with PTSD can find the strength to deal with their condition.",
+      notes: [
+        ["Audience shift", "Written for the supporter, not the patient — a less-crowded angle on a heavily-covered mental health topic."],
+        ["Link placement", "A psychology-degree program link is framed as one option among several ('if you want to go further') rather than the headline solution."],
+        ["Sensitivity", "Avoids diagnostic language directed at the reader; stays in a supportive, non-clinical register throughout."]
+      ]
+    },
+    {
+      title: "What Has the Pandemic Taught Us About Health Consciousness",
+      words: 902,
+      excerpt: "Before COVID-19, nobody imagined that our healthcare systems were so fragile and that we were so unprepared for a pandemic outbreak.",
+      notes: [
+        ["Format range", "A narrative/essay structure rather than a numbered listicle — shows the format flexes to the topic instead of defaulting to '5 tips'."],
+        ["Link diversification", "Multiple contextual links spread across distinct paragraphs (health promotion, mental wellbeing, public health research) rather than one repeated anchor — a hub-style piece."],
+      ]
+    },
+    {
+      title: "6 Vital Health Tips for Veterans",
+      words: 1071, cluster: true,
+      excerpt: "Anything from old injuries to certain mental conditions can impact a veteran's life after the service. Therefore, it's imperative that veterans engage in self-care.",
+      notes: [
+        ["Angle", "Third node in the asbestos/mesothelioma cluster — reframed for a veteran audience via military-era asbestos exposure in old weaponry."],
+        ["Cross-referencing", "Cites a specific 2019 study in the International Journal of Radiation Biology on Navy veteran mesothelioma rates — specificity signals real research, not filler."],
+        ["Structure", "Broadens beyond the hazard into general veteran wellness (diet, mental health, support networks), keeping the piece useful even to readers with no asbestos exposure."]
+      ]
+    }
+  ],
+  home: [
+    {
+      title: "X Tips to Renovate Your Home on a Budget",
+      words: 1123,
+      excerpt: "It can take anywhere between $20,000 to $100,000 to renovate a house... but that cost can still be too much if you're on a tight budget.",
+      notes: [
+        ["Local SEO", "Geo-modified throughout for an Indianapolis audience, with local cost benchmarks ($9,000 avg.) that a national article wouldn't include."],
+        ["Link placement", "A local shower-replacement contractor link sits inside a section about bathroom fixtures — service + location anchor text."],
+        ["Hook", "Opens with a cost anchor (the $20K–$100K range) before revealing the budget-friendly angle — classic pattern interrupt."]
+      ]
+    },
+    {
+      title: "6 Home Improving Tips to Increase Your Rental Income",
+      words: 1161,
+      excerpt: "Appearances matter in real estate and if you want those extra thousands in your monthly rent, then take a look at the following budget-friendly home improvement tips.",
+      notes: [
+        ["Audience", "Written for landlords, not homeowners — a distinct commercial angle from the resale-value piece below."],
+        ["Link placement", "A UK-based emergency boiler repair link is placed inside a seasonal-risk aside (cold radiators) — shows the same technique adapted to a UK market."],
+        ["Structure", "Sub-bulleted tactics within each numbered section, for both fast scanning and keyword density on related terms (curb appeal, pet-friendly, fixtures)."]
+      ]
+    },
+    {
+      title: "5 Tips to Increase Your Home's Resale Value",
+      words: 970,
+      excerpt: "According to experts, essential upgrades to your house's exterior and sprucing up the curb appeal can improve your house's resale value by 7% to 14%.",
+      notes: [
+        ["E-E-A-T", "Every tip is backed by a cited statistic (HomeLight, National Association of Realtors, NAR generational report) — an authority-first, link-free piece."],
+        ["Contrast", "Deliberately not written for link building — shows range: some briefs call for pure informational authority content, not embedded backlinks."]
+      ]
+    },
+    {
+      title: "6 Things You Need to Know Before Commencing a Demolition",
+      words: 1037, cluster: true,
+      excerpt: "Demolition is serious business and it's not something weekend DIYers can do... a single mishap can lead to the risk of damage to both the surrounding people and property.",
+      notes: [
+        ["Cluster crossover", "Includes an asbestos risk-assessment section — the fourth node connecting back to the health cluster from a construction-safety angle."],
+        ["Link placement", "A local tree-removal-permit link (Baton Rouge) is placed inside a regulatory-permits section, matching real search behavior around local permit questions."]
+      ]
+    },
+    {
+      title: "5 Things to Consider When Renting a Shipping Container",
+      words: 1051,
+      excerpt: "Renting a shipping container is much cheaper and easier than purchasing one... a great option for short-term storage needs.",
+      notes: [
+        ["Niche/B2B", "A commercial storage/logistics angle rather than consumer home content — demonstrates range into B2B service topics."],
+        ["Structure", "Practical inspection checklist (holes, dents, chemical residue, rust) reads like genuine buyer research, which builds trust for a rental decision."]
+      ]
+    },
+    {
+      title: "6 Essential Questions to Ask a Mortgage Professional Advisor",
+      words: 958,
+      excerpt: "Mortgage advisors are the conduit between borrowers and lenders... they know how to negotiate the best deals for you.",
+      notes: [
+        ["Format", "FAQ-style H2s ('What Type of Loan is Best for Me?') mirror real search queries — built for featured snippet capture."],
+        ["Link placement", "An independent mortgage advisor link is placed at the point where the article recommends seeking professional guidance."]
+      ]
+    }
+  ],
+  business: [
+    {
+      title: "The Career Roadmap: 3 Creative Approaches to Career Education",
+      words: 883,
+      excerpt: "Thinking about your career shouldn't necessarily be a stressful activity because, with the right balance of curiosity and creativity, you can have a fun time with career education.",
+      notes: [
+        ["Format", "Thematic sections (arts-based learning, map worksheets, creative exploration) rather than a numbered list — matches a more reflective, less transactional topic."],
+        ["Link placement", "An online doctorate-in-education link is woven into a specific example, not the article's main thrust."]
+      ]
+    },
+    {
+      title: "Do You Need a Degree to Be an Entrepreneur?",
+      words: 1079,
+      excerpt: "There is no straight-up answer to this question... you'd rethink your strategy of not attending college if you look at the likes of Elon Musk and Jeff Bezos.",
+      notes: [
+        ["Structure", "Deliberately balanced — presents both the 'no degree needed' and 'degree helps' cases before landing on a nuanced conclusion, rather than a one-sided pitch."],
+        ["Link placement", "An MBA-program link appears only in the section actively discussing formal business education, keeping it contextually earned."]
+      ]
+    },
+    {
+      title: "7 Ways CEOs Can Ensure Effective Communication with Employees",
+      words: 1088,
+      excerpt: "Poor communication is the death of all good things within an organization and effective communication starts from the top.",
+      notes: [
+        ["E-E-A-T", "Cites a specific Workplace Survey statistic (68% via theEMPLOYEEapp) rather than an unsupported claim."],
+        ["Link placement", "A communications-degree link sits inside a section about leaders needing to build their own skills — natural fit, not forced."]
+      ]
+    },
+    {
+      title: "Six Signs of a Bad Digital Marketing Agency",
+      words: 1056,
+      excerpt: "Any individual with a firm grip on SEO basics will know that it is a great way to increase organic revenue, but it is not the only way.",
+      notes: [
+        ["Industry fluency", "A piece about evaluating marketing agencies that itself references SEO fundamentals, link building, and outsourcing practices — written with real working knowledge of the space, not just paraphrased marketing jargon."],
+        ["Structure", "Warning-sign framework (rather than a benefits list) taps into a different, high-intent search behavior: people vetting a purchase decision."]
+      ]
+    },
+    {
+      title: "Key Positions You Need to Fill in Your Company",
+      words: 1097,
+      excerpt: "A company is as good as its employees. However, it's not simply enough to have competent people running the business.",
+      notes: [
+        ["Information architecture", "Organized into three deliberate tiers (management, executive, operational) instead of one flat list — a small structural choice that makes a 12-role article easy to navigate."],
+      ]
+    },
+    {
+      title: "How Better Communication in an Organization Can Lead to Innovation",
+      words: 966,
+      excerpt: "Clear and cut communication within a business structure is the key to a culture of innovation.",
+      notes: [
+        ["E-E-A-T", "Cites a named 2004 paper from Creativity and Innovation Management — academic sourcing for a B2B thought-leadership piece."],
+        ["No embedded link strategy", "Written purely for authority and shareability, not for backlink placement — another example of range across brief types."]
+      ]
+    }
+  ]
+};
+
+function renderCases(list, containerId){
+  const container = document.getElementById(containerId);
+  list.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'case';
+    el.innerHTML = `
+      <div class="case-head">
+        <h3>${item.title}${item.cluster ? ' <span class="mono" style="font-size:0.7rem;color:var(--ochre);border:1px solid var(--ochre);border-radius:10px;padding:2px 8px;margin-left:8px;">CLUSTER</span>' : ''}</h3>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span class="case-meta">${item.words} words</span>
+          <span class="chevron">›</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-body-inner">
+          <div class="manuscript">
+            <span class="label">Excerpt</span>
+            <blockquote>${item.excerpt}</blockquote>
+          </div>
+          <div class="annotations">
+            <span class="label">Strategy notes</span>
+            ${item.notes.map(n => `<div class="note"><div class="dot"></div><p><b>${n[0]}:</b> ${n[1]}</p></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    el.querySelector('.case-head').addEventListener('click', () => {
+      const isOpen = el.classList.contains('open');
+      const body = el.querySelector('.case-body');
+      if(isOpen){
+        body.style.maxHeight = null;
+        el.classList.remove('open');
+      } else {
+        el.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+    container.appendChild(el);
+  });
+}
+
+renderCases(DATA.health, 'health-cases');
+renderCases(DATA.home, 'home-cases');
+renderCases(DATA.business, 'business-cases');
+</script>
+
+</body>
+</html>

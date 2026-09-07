@@ -1,503 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEO Content Strategy Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#F5F2E9;
-    --card:#FFFDF8;
-    --ink:#211D16;
-    --ink-soft:#4B463C;
-    --rule:#D3CBB4;
-    --ochre:#B0791E;
-    --ochre-soft:#F1E2C4;
-    --moss:#4C6249;
-    --moss-soft:#E4E9DD;
-    --rust:#8A4630;
-    --rust-soft:#F0DFD5;
-    --max-w:920px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    font-size:16px;
-    line-height:1.6;
-  }
-  ::selection{background:var(--ochre-soft);}
-  h1,h2,h3,h4{
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    margin:0;
-    color:var(--ink);
-  }
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
-
-  /* NAV */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(245,242,233,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--rule);
-  }
-  nav .wrap{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 24px;
-  }
-  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;letter-spacing:-0.01em;}
-  .brand span{color:var(--ochre);}
-  .navlinks{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
-  .navlinks a{
-    color:var(--ink-soft);text-decoration:none;font-size:0.92rem;font-weight:500;
-    border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s, color .2s;
-  }
-  .navlinks a:hover{color:var(--ink);border-color:var(--ochre);}
-  @media(max-width:640px){.navlinks{display:none;}}
-
-  /* HERO */
-  header.hero{padding:88px 0 64px;border-bottom:1px solid var(--rule);}
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;
-    text-transform:uppercase;color:var(--ochre);margin-bottom:18px;display:inline-block;
-    border:1px solid var(--ochre); border-radius:2px; padding:4px 9px;
-  }
-  h1.title{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.08;letter-spacing:-0.015em;max-width:14ch;}
-  h1.title em{font-style:italic;color:var(--ochre);}
-  .lede{font-size:1.15rem;color:var(--ink-soft);max-width:56ch;margin-top:22px;}
-  .stat-strip{display:flex;flex-wrap:wrap;gap:36px;margin-top:44px;}
-  .stat b{font-family:'Fraunces',serif;font-size:1.9rem;display:block;font-weight:600;}
-  .stat span{font-size:0.82rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
-
-  /* APPROACH / MANIFESTO */
-  section.approach{padding:64px 0;border-bottom:1px solid var(--rule);}
-  .approach-grid{display:grid;grid-template-columns:1.1fr 1.4fr;gap:48px;}
-  @media(max-width:760px){.approach-grid{grid-template-columns:1fr;}}
-  section.approach h2{font-size:1.9rem;max-width:12ch;}
-  .approach-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;}
-  .approach-list li{padding-left:30px;position:relative;}
-  .approach-list li::before{
-    content:attr(data-n);position:absolute;left:0;top:1px;
-    font-family:'IBM Plex Mono',monospace;color:var(--ochre);font-size:0.85rem;
-  }
-  .approach-list h4{font-size:1.02rem;margin-bottom:4px;}
-  .approach-list p{margin:0;color:var(--ink-soft);font-size:0.94rem;}
-
-  /* FLAGSHIP CLUSTER CALLOUT */
-  .cluster-box{
-    margin-top:64px;background:var(--card);border:1px solid var(--rule);
-    border-left:4px solid var(--ochre); border-radius:3px;padding:32px;
-  }
-  .cluster-box .tag{
-    font-family:'IBM Plex Mono',monospace;font-size:0.74rem;text-transform:uppercase;
-    letter-spacing:0.06em;color:var(--ochre);
-  }
-  .cluster-box h3{font-size:1.4rem;margin-top:8px;max-width:34ch;}
-  .cluster-box p{color:var(--ink-soft);margin-top:10px;max-width:64ch;}
-  .cluster-nodes{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
-  .node{
-    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;background:var(--moss-soft);
-    color:var(--moss);border-radius:20px;padding:6px 14px;
-  }
-
-  /* NICHE SECTIONS */
-  section.niche{padding:64px 0;border-bottom:1px solid var(--rule);}
-  .niche-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap;}
-  .niche-head h2{font-size:2rem;}
-  .niche-count{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--ink-soft);}
-  .niche-desc{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:40px;}
-
-  .case{
-    background:var(--card);border:1px solid var(--rule);border-radius:4px;
-    margin-bottom:28px;overflow:hidden;
-  }
-  .case-head{
-    display:flex;justify-content:space-between;align-items:center;gap:16px;
-    padding:20px 26px;cursor:pointer;
-  }
-  .case-head h3{font-size:1.18rem;max-width:44ch;}
-  .case-meta{font-family:'IBM Plex Mono',monospace;font-size:0.74rem;color:var(--ink-soft);white-space:nowrap;}
-  .chevron{transition:transform .25s;color:var(--ochre);font-size:1.1rem;flex-shrink:0;}
-  .case.open .chevron{transform:rotate(90deg);}
-  .case-body{
-    max-height:0;overflow:hidden;transition:max-height .35s ease;
-    border-top:1px solid transparent;
-  }
-  .case.open .case-body{border-top:1px solid var(--rule);}
-  .case-body-inner{
-    display:grid;grid-template-columns:1fr 1fr;gap:0;
-  }
-  @media(max-width:700px){.case-body-inner{grid-template-columns:1fr;}}
-  .manuscript{
-    padding:24px 26px;border-right:1px solid var(--rule);
-  }
-  @media(max-width:700px){.manuscript{border-right:none;border-bottom:1px solid var(--rule);}}
-  .manuscript .label{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;color:var(--ink-soft);letter-spacing:0.06em;margin-bottom:10px;display:block;}
-  .manuscript blockquote{
-    font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;line-height:1.55;
-    margin:0;color:var(--ink);
-  }
-  .manuscript blockquote::before{content:"\201C";color:var(--ochre);}
-  .manuscript blockquote::after{content:"\201D";color:var(--ochre);}
-  .annotations{padding:24px 26px;background:#FBF9F3;}
-  .annotations .label{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;color:var(--ochre);letter-spacing:0.06em;margin-bottom:12px;display:block;}
-  .note{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;}
-  .note:last-child{margin-bottom:0;}
-  .note .dot{
-    width:6px;height:6px;border-radius:50%;background:var(--ochre);margin-top:8px;flex-shrink:0;
-  }
-  .note p{margin:0;font-size:0.9rem;color:var(--ink-soft);}
-  .note b{color:var(--ink);font-weight:600;}
-
-  /* FOOTER / CONTACT */
-  footer{padding:72px 0 60px;}
-  footer h2{font-size:2rem;max-width:16ch;}
-  footer p.lede{margin-top:16px;}
-  .contact-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px;}
-  .btn{
-    font-family:'IBM Plex Mono',monospace;font-size:0.85rem;text-decoration:none;
-    padding:12px 22px;border-radius:3px;border:1px solid var(--ink);color:var(--ink);
-    transition:background .2s, color .2s;
-  }
-  .btn.primary{background:var(--ink);color:var(--paper);}
-  .btn:hover{background:var(--ochre);border-color:var(--ochre);color:#fff;}
-  .fineprint{margin-top:56px;padding-top:24px;border-top:1px solid var(--rule);font-size:0.8rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maham Arsalan — SEO Content Writer with 10+ years of experience creating search-focused, reader-first content across health, home, real estate, business and B2B.">
+  <meta name="author" content="Maham Arsalan">
+  <title>Maham Arsalan | SEO Content Writer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <div class="brand">[Maham Arsalan]<span>.</span></div>
-    <ul class="navlinks">
-      <li><a href="#approach">Approach</a></li>
-      <li><a href="#health">Health &amp; Wellness</a></li>
-      <li><a href="#home">Home &amp; Real Estate</a></li>
-      <li><a href="#business">Business &amp; Career</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="eyebrow">SEO Content Strategist &amp; Writer</span>
-    <h1 class="title">Content that ranks. Strategy you can <em>actually see</em>.</h1>
-    <p class="lede">Ten years writing SEO content across health, home &amp; real estate, and business — mostly ghostwritten, always strategic. This is the thinking behind the words: keyword intent, structure, and link placement, laid out case by case.</p>
-    <div class="stat-strip">
-      <div class="stat"><b>10+</b><span>YEARS WRITING</span></div>
-      <div class="stat"><b>95+</b><span>SEO ARTICLES SHIPPED</span></div>
-      <div class="stat"><b>3</b><span>CORE NICHES</span></div>
-      <div class="stat"><b>1</b><span>CONTENT CLUSTER FEATURED BELOW</span></div>
-    </div>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="#top">MA<span>.</span></a>
+    <nav>
+      <a href="#work">Selected Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="#contact">Let's work together</a>
+    </nav>
+    <button class="menu" aria-label="Open menu">☰</button>
   </div>
 </header>
 
-<section class="approach" id="approach">
-  <div class="wrap">
-    <div class="approach-grid">
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
       <div>
-        <h2>How I approach a brief</h2>
+        <p class="eyebrow">SEO CONTENT WRITER · 10+ YEARS</p>
+        <h1>Content that <em>earns attention</em> — and knows what to do with it.</h1>
+        <p class="hero-copy">I write search-focused, reader-first content across health, home & real estate, business, career and B2B. The goal isn't to fill a page with keywords. It's to give the right reader the right answer in the right format.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#work">Explore my work <span>↓</span></a>
+          <a class="text-link" href="#contact">Get in touch →</a>
+        </div>
       </div>
-      <ul class="approach-list">
-        <li data-n="01"><h4>Structure serves search intent</h4><p>Numbered listicles for skimmable, snippet-friendly answers. Narrative essays when a topic needs argument, not a checklist. The format is a decision, not a default.</p></li>
-        <li data-n="02"><h4>Every link earns its place</h4><p>When a piece is written to support link building, the contextual link sits inside a sentence that would exist anyway — never bolted on. Anchor text matches commercial intent without breaking the read.</p></li>
-        <li data-n="03"><h4>Local and niche targeting</h4><p>Geo-modified angles (a renovation piece written for an Indianapolis audience, a plumbing link for a Northwich readership) so content serves both the reader and the client's local SEO goals.</p></li>
-        <li data-n="04"><h4>E-E-A-T where it matters</h4><p>Health and finance content cites real studies, government sources, and named organizations — because YMYL topics get held to a higher bar, by readers and by Google.</p></li>
-      </ul>
+      <aside class="hero-card">
+        <p class="card-label">WHAT I BRING TO A BRIEF</p>
+        <div class="mini-stat"><strong>10+</strong><span>years writing SEO content</span></div>
+        <div class="mini-stat"><strong>YMYL</strong><span>health & high-trust topics</span></div>
+        <div class="mini-stat"><strong>SEO</strong><span>intent, structure & linking</span></div>
+        <div class="mini-stat"><strong>B2B</strong><span>business & commercial content</span></div>
+      </aside>
     </div>
+  </section>
 
-    <div class="cluster-box">
-      <span class="tag">Flagship case study — content clustering</span>
-      <h3>One client, one hazard, four angles: an asbestos/mesothelioma content cluster</h3>
-      <p>Rather than one generic article, this client's asbestos-exposure topic was built out across four distinct entry points — each targeting a different search intent and audience, each linking back to the same commercial cluster (legal and medical resources). This is what a real topic cluster looks like in practice, not just four keywords stuffed into one post.</p>
-      <div class="cluster-nodes">
-        <span class="node">General health risk &amp; prevention</span>
-        <span class="node">Occupational / workplace angle</span>
-        <span class="node">Veterans health angle</span>
-        <span class="node">Demolition &amp; construction angle</span>
+  <section class="intro-strip">
+    <div class="container strip-grid">
+      <p>Mostly ghostwritten. Always strategic.</p>
+      <p>Selected samples below are presented with client-sensitive details omitted where necessary.</p>
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SELECTED WORK</p>
+          <h2>Writing built around the brief.</h2>
+        </div>
+        <p class="section-note">A selection of SEO articles showing different audiences, search intents, formats and industries.</p>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Filter work">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="health">Health</button>
+        <button class="filter" data-filter="home">Home & Real Estate</button>
+        <button class="filter" data-filter="business">Business & B2B</button>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card" data-category="health">
+          <div class="work-top"><span>HEALTH · 1,106 WORDS</span><span>CLUSTER</span></div>
+          <h3>Asbestos Exposure: Health Risks and How to Avoid It</h3>
+          <p>An informational long-tail piece designed around health-risk questions, contextual linking and high-trust sourcing.</p>
+          <div class="tags"><span>Search intent</span><span>E-E-A-T</span><span>Link strategy</span></div>
+          <details><summary>View strategy</summary><p>H2s mirror People Also Ask-style questions. A contextual mesothelioma-doctor resource is placed inside a paragraph about seeking diagnosis, while WHO and OSHA sources support the YMYL angle.</p></details>
+        </article>
+
+        <article class="work-card" data-category="health">
+          <div class="work-top"><span>HEALTH · 912 WORDS</span><span>CLUSTER</span></div>
+          <h3>Workplace Health: How to Reduce the Risk of Occupational Cancer</h3>
+          <p>The same core hazard reframed for workplace safety and legal-compensation intent.</p>
+          <div class="tags"><span>Audience shift</span><span>Authority</span><span>Contextual links</span></div>
+          <details><summary>View strategy</summary><p>A distinct entry point in the same content cluster, using the UK Health and Safety at Work Act 1974 for regulatory credibility and embedding commercial anchor text naturally.</p></details>
+        </article>
+
+        <article class="work-card" data-category="health">
+          <div class="work-top"><span>HEALTH · 885 WORDS</span></div>
+          <h3>5 Reasons You Should Avoid Self-Diagnosis</h3>
+          <p>A reassuring, problem–agitate–solve listicle that begins with a familiar search behavior and resolves with a safer alternative.</p>
+          <div class="tags"><span>Listicle</span><span>YMYL</span><span>Conversion</span></div>
+          <details><summary>View strategy</summary><p>The hook uses the relatable habit of Googling symptoms before moving into risk. The online-doctor platform appears at the resolution point rather than being forced into the opening.</p></details>
+        </article>
+
+        <article class="work-card" data-category="health">
+          <div class="work-top"><span>HEALTH · 865 WORDS</span></div>
+          <h3>How to Help a Friend or Someone with PTSD</h3>
+          <p>A supporter-focused mental-health guide written in a sensitive, non-clinical register.</p>
+          <div class="tags"><span>Audience intent</span><span>Sensitivity</span><span>Support content</span></div>
+          <details><summary>View strategy</summary><p>The audience is the friend or supporter rather than the patient. Diagnostic language is avoided, and an education-program link is positioned as one optional next step.</p></details>
+        </article>
+
+        <article class="work-card" data-category="health">
+          <div class="work-top"><span>HEALTH · 1,071 WORDS</span><span>CLUSTER</span></div>
+          <h3>6 Vital Health Tips for Veterans</h3>
+          <p>A broad wellness piece with a specific veteran audience and a research-backed asbestos-exposure angle.</p>
+          <div class="tags"><span>Audience targeting</span><span>Research</span><span>Cluster</span></div>
+          <details><summary>View strategy</summary><p>One node in the broader asbestos/mesothelioma cluster. A specific 2019 study is used to add authority while the article remains useful beyond the hazard itself.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>HOME · 1,123 WORDS</span></div>
+          <h3>X Tips to Renovate Your Home on a Budget</h3>
+          <p>A locally targeted renovation guide combining cost-led framing, practical advice and service-intent linking.</p>
+          <div class="tags"><span>Local SEO</span><span>Geo-targeting</span><span>Link placement</span></div>
+          <details><summary>View strategy</summary><p>The piece uses an Indianapolis angle and local cost benchmarks, with a shower-replacement contractor link placed inside the relevant bathroom-fixtures section.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>HOME · 1,161 WORDS</span></div>
+          <h3>6 Home Improving Tips to Increase Your Rental Income</h3>
+          <p>A landlord-focused article built around practical improvements, seasonal risks and commercial search intent.</p>
+          <div class="tags"><span>Landlord intent</span><span>UK market</span><span>Scanning</span></div>
+          <details><summary>View strategy</summary><p>Sub-bulleted tactics make the numbered sections easy to scan, while a UK emergency-boiler-repair link is integrated into a seasonal-risk aside.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>REAL ESTATE · 970 WORDS</span></div>
+          <h3>5 Tips to Increase Your Home's Resale Value</h3>
+          <p>An authority-first piece backed by named real-estate sources and statistics rather than embedded backlink requirements.</p>
+          <div class="tags"><span>E-E-A-T</span><span>Research</span><span>Informational</span></div>
+          <details><summary>View strategy</summary><p>Every tip is supported by a cited statistic, including HomeLight and National Association of Realtors material. The brief demonstrates that not every article needs a commercial link strategy.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>CONSTRUCTION · 1,037 WORDS</span><span>CLUSTER</span></div>
+          <h3>6 Things You Need to Know Before Commencing a Demolition</h3>
+          <p>A construction-safety article that connects commercial search intent with the wider asbestos content cluster.</p>
+          <div class="tags"><span>Cluster crossover</span><span>Local SEO</span><span>Regulatory intent</span></div>
+          <details><summary>View strategy</summary><p>An asbestos risk-assessment section connects the article back to the health cluster. A Baton Rouge tree-removal-permit link sits inside a regulatory-permits section.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>B2B · 1,051 WORDS</span></div>
+          <h3>5 Things to Consider When Renting a Shipping Container</h3>
+          <p>A commercial storage/logistics piece written for a practical buyer-research journey.</p>
+          <div class="tags"><span>B2B</span><span>Buyer intent</span><span>Checklist</span></div>
+          <details><summary>View strategy</summary><p>The inspection checklist covers holes, dents, chemical residue and rust, creating genuinely useful buyer guidance rather than generic content.</p></details>
+        </article>
+
+        <article class="work-card" data-category="home">
+          <div class="work-top"><span>REAL ESTATE · 958 WORDS</span></div>
+          <h3>6 Essential Questions to Ask a Mortgage Professional Advisor</h3>
+          <p>An FAQ-style article shaped around real search questions and a high-intent financial decision.</p>
+          <div class="tags"><span>FAQ structure</span><span>Snippet intent</span><span>Contextual link</span></div>
+          <details><summary>View strategy</summary><p>H2s mirror questions such as “What Type of Loan is Best for Me?” and the advisor link appears where professional guidance is actually recommended.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>BUSINESS · 1,079 WORDS</span></div>
+          <h3>Do You Need a Degree to Be an Entrepreneur?</h3>
+          <p>A balanced argumentative piece that presents competing perspectives before landing on a nuanced conclusion.</p>
+          <div class="tags"><span>Balanced argument</span><span>Business</span><span>Commercial context</span></div>
+          <details><summary>View strategy</summary><p>The structure deliberately avoids a one-sided pitch. An MBA-program link appears only where formal business education is actively discussed.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>BUSINESS · 1,088 WORDS</span></div>
+          <h3>7 Ways CEOs Can Ensure Effective Communication with Employees</h3>
+          <p>A leadership guide combining practical structure with a specific workplace statistic for authority.</p>
+          <div class="tags"><span>E-E-A-T</span><span>Leadership</span><span>Research</span></div>
+          <details><summary>View strategy</summary><p>The article uses a named Workplace Survey statistic and places a communications-degree link inside a section about leaders developing their own skills.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>BUSINESS · 1,056 WORDS</span></div>
+          <h3>Six Signs of a Bad Digital Marketing Agency</h3>
+          <p>A warning-sign framework for readers actively evaluating a purchase decision.</p>
+          <div class="tags"><span>SEO fluency</span><span>High intent</span><span>Evaluation</span></div>
+          <details><summary>View strategy</summary><p>The piece discusses SEO fundamentals, link building and outsourcing practices from the perspective of someone vetting a marketing provider.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>BUSINESS · 1,097 WORDS</span></div>
+          <h3>Key Positions You Need to Fill in Your Company</h3>
+          <p>An information architecture-led guide that organizes roles into management, executive and operational tiers.</p>
+          <div class="tags"><span>Information architecture</span><span>Business</span><span>Navigation</span></div>
+          <details><summary>View strategy</summary><p>Three deliberate tiers prevent a long list of roles from becoming a flat wall of information, making a 12-role article easier to navigate.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>BUSINESS · 966 WORDS</span></div>
+          <h3>How Better Communication in an Organization Can Lead to Innovation</h3>
+          <p>A thought-leadership piece using academic sourcing and a purely authority/shareability-focused brief.</p>
+          <div class="tags"><span>Thought leadership</span><span>Academic sourcing</span><span>Authority</span></div>
+          <details><summary>View strategy</summary><p>A named 2004 paper from Creativity and Innovation Management supports the argument, while the brief intentionally uses no embedded link strategy.</p></details>
+        </article>
+
+        <article class="work-card" data-category="business">
+          <div class="work-top"><span>CAREER · 883 WORDS</span></div>
+          <h3>The Career Roadmap: 3 Creative Approaches to Career Education</h3>
+          <p>A thematic career-education piece showing flexibility beyond numbered listicle structures.</p>
+          <div class="tags"><span>Format flexibility</span><span>Career</span><span>Commercial context</span></div>
+          <details><summary>View strategy</summary><p>Thematic sections cover arts-based learning, map worksheets and creative exploration, matching a reflective topic rather than forcing it into a generic list.</p></details>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="niche" id="health">
-  <div class="wrap">
-    <div class="niche-head">
-      <h2>Health &amp; Wellness</h2>
-      <span class="niche-count mono">24 articles in archive · 6 featured</span>
+  <section id="approach" class="section dark">
+    <div class="container">
+      <div class="section-heading light">
+        <div>
+          <p class="eyebrow">MY APPROACH</p>
+          <h2>Strategy before sentences.</h2>
+        </div>
+        <p class="section-note">The writing changes with the intent. The thinking behind it stays consistent.</p>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-item"><span>01</span><h3>Search intent</h3><p>I start with what the reader is trying to accomplish, then choose the angle and structure that best answers that need.</p></div>
+        <div class="approach-item"><span>02</span><h3>Structure</h3><p>Listicles, FAQs, guides and narrative essays all have their place. Format follows the topic rather than habit.</p></div>
+        <div class="approach-item"><span>03</span><h3>Link placement</h3><p>When link building is part of the brief, links belong inside sentences that make sense without them — never bolted on.</p></div>
+        <div class="approach-item"><span>04</span><h3>Authority</h3><p>For health and other high-trust subjects, credible organizations, named studies and responsible framing matter.</p></div>
+        <div class="approach-item"><span>05</span><h3>Local targeting</h3><p>Geo-modified angles and local references can turn a generic article into content that serves a specific market.</p></div>
+        <div class="approach-item"><span>06</span><h3>Content clusters</h3><p>One broad topic can become several purposeful entry points when different audiences and search intents deserve different pages.</p></div>
+      </div>
     </div>
-    <p class="niche-desc">Evergreen, YMYL-aware health content — from occupational hazard education to mental health support guides. Built for trust signals as much as for rankings.</p>
-    <div id="health-cases"></div>
-  </div>
-</section>
+  </section>
 
-<section class="niche" id="home">
-  <div class="wrap">
-    <div class="niche-head">
-      <h2>Home, Real Estate &amp; Renovation</h2>
-      <span class="niche-count mono">17 articles in archive · 6 featured</span>
+  <section class="case-study">
+    <div class="container case-grid">
+      <div>
+        <p class="eyebrow">FLAGSHIP CASE STUDY</p>
+        <h2>One hazard. Four angles. One commercial cluster.</h2>
+        <p>A client’s asbestos/mesothelioma topic was developed across distinct entry points: general health risk, workplace safety, veterans’ health, and construction/demolition.</p>
+      </div>
+      <div class="cluster-visual">
+        <div class="node center">CORE<br>TOPIC</div>
+        <div class="node n1">HEALTH</div>
+        <div class="node n2">WORKPLACE</div>
+        <div class="node n3">VETERANS</div>
+        <div class="node n4">CONSTRUCTION</div>
+      </div>
     </div>
-    <p class="niche-desc">Budget renovation guides, landlord and resale-value content, and B2B home-services pieces — often geo-targeted for local service clients.</p>
-    <div id="home-cases"></div>
-  </div>
-</section>
+  </section>
 
-<section class="niche" id="business">
-  <div class="wrap">
-    <div class="niche-head">
-      <h2>Business, Career &amp; Leadership</h2>
-      <span class="niche-count mono">22 articles in archive · 6 featured</span>
+  <section id="about" class="section about">
+    <div class="container about-grid">
+      <div>
+        <p class="eyebrow">ABOUT MAHAM</p>
+        <h2>A writer who can think beyond the keyword.</h2>
+      </div>
+      <div>
+        <p class="lead">I’m an SEO content writer with 10+ years of experience creating long-form and search-focused content for clients across multiple industries.</p>
+        <p>Much of my work has been ghostwritten or produced on a work-for-hire basis, so not every published URL can be publicly attributed. Instead, this portfolio focuses on the work itself: the writing, the research, the structure and the SEO thinking behind it.</p>
+        <div class="skill-list">
+          <span>SEO blog writing</span><span>Long-form content</span><span>Content clusters</span><span>YMYL content</span><span>Local SEO</span><span>On-page SEO</span><span>Research</span><span>Product content</span><span>Copywriting</span>
+        </div>
+      </div>
     </div>
-    <p class="niche-desc">B2B leadership and career-education content — communication frameworks for CEOs, org-structure guides, and balanced argumentative pieces on education vs. entrepreneurship.</p>
-    <div id="business-cases"></div>
-  </div>
-</section>
+  </section>
 
-<footer id="contact">
-  <div class="wrap">
-    <span class="eyebrow">Let's work together</span>
-    <h2>Have an SEO content project in mind?</h2>
-    <p class="lede">I write for health, home &amp; real estate, and business niches — with the same strategic thinking shown above applied to your brief.</p>
-    <div class="contact-row">
-      <a class="btn primary" href="mailto:[mahamkhun@gmail.com]">Email me</a>
-      
+  <section id="contact" class="contact">
+    <div class="container contact-inner">
+      <p class="eyebrow">LET'S WORK TOGETHER</p>
+      <h2>Have a brief? Let's turn it into content that works.</h2>
+      <p>For freelance projects, ongoing content work or full-time opportunities, I'd love to hear what you're building.</p>
+      <a class="button button-light" href="mailto:YOUR-EMAIL@example.com">Email Maham <span>↗</span></a>
+      <p class="tiny">Replace the email address in <code>index.html</code> before publishing.</p>
     </div>
-    <div class="fineprint">Excerpts shown are short samples from client work; full pieces were written on a ghostwritten, work-for-hire basis. Strategy notes reflect the author's own analysis.</div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Maham Arsalan</span>
+    <span>SEO Content Writer</span>
   </div>
 </footer>
 
 <script>
-const DATA = {
-  health: [
-    {
-      title: "Asbestos Exposure: Health Risks and How to Avoid It",
-      words: 1106, cluster: true,
-      excerpt: "This naturally occurring fibrous mineral has been found to be extremely dangerous to human health... repeated exposure to asbestos fiber can lead to serious health conditions such as lung problems and cancer.",
-      notes: [
-        ["Search intent", "Targets informational long-tail ('asbestos exposure health risks') with H2s that mirror People Also Ask questions — how, what, how to avoid."],
-        ["Link placement", "A contextual link to a mesothelioma-doctor resource sits inside a sentence about seeking diagnosis — commercial intent, non-disruptive placement."],
-        ["E-E-A-T", "Cites WHO and OSHA sources, recommends professional consultation — appropriate caution for YMYL health content."]
-      ]
-    },
-    {
-      title: "Workplace Health: How to Reduce the Risk of Occupational Cancer",
-      words: 912, cluster: true,
-      excerpt: "Carcinogens or cancer-causing agents are responsible for occupational cancer... at least 100,000 deaths worldwide are caused by asbestos-related diseases.",
-      notes: [
-        ["Angle", "Same hazard as the piece above, reframed for a workplace-safety and legal-compensation audience — part of the four-angle cluster."],
-        ["Authority", "References the UK Health and Safety at Work Act 1974 for regulatory credibility."],
-        ["Link placement", "Mesothelioma-lawsuit anchor text embedded within a compliance-focused, non-salesy paragraph."]
-      ]
-    },
-    {
-      title: "5 Reasons You Should Avoid Self-Diagnosis",
-      words: 885,
-      excerpt: "We've all been there where we try to find the answers to our symptoms from Google... when you take help from Dr. Google and self-diagnose, you end up doing more harm than good.",
-      notes: [
-        ["Hook", "Opens on a relatable behavior (Googling symptoms) before pivoting to the risk — classic problem–agitate–solve listicle shape."],
-        ["Link strategy", "An online-doctor platform is introduced as the 'safer alternative' — the link sits at the resolution point of the argument, not just dropped in."],
-        ["Tone", "Reassuring rather than alarmist, appropriate for anxious health searchers."]
-      ]
-    },
-    {
-      title: "How to Help a Friend or Someone with PTSD",
-      words: 865,
-      excerpt: "The worst thing about PTSD is that it also affects the family and friends of the sufferer... with the right type of support, people with PTSD can find the strength to deal with their condition.",
-      notes: [
-        ["Audience shift", "Written for the supporter, not the patient — a less-crowded angle on a heavily-covered mental health topic."],
-        ["Link placement", "A psychology-degree program link is framed as one option among several ('if you want to go further') rather than the headline solution."],
-        ["Sensitivity", "Avoids diagnostic language directed at the reader; stays in a supportive, non-clinical register throughout."]
-      ]
-    },
-    {
-      title: "What Has the Pandemic Taught Us About Health Consciousness",
-      words: 902,
-      excerpt: "Before COVID-19, nobody imagined that our healthcare systems were so fragile and that we were so unprepared for a pandemic outbreak.",
-      notes: [
-        ["Format range", "A narrative/essay structure rather than a numbered listicle — shows the format flexes to the topic instead of defaulting to '5 tips'."],
-        ["Link diversification", "Multiple contextual links spread across distinct paragraphs (health promotion, mental wellbeing, public health research) rather than one repeated anchor — a hub-style piece."],
-      ]
-    },
-    {
-      title: "6 Vital Health Tips for Veterans",
-      words: 1071, cluster: true,
-      excerpt: "Anything from old injuries to certain mental conditions can impact a veteran's life after the service. Therefore, it's imperative that veterans engage in self-care.",
-      notes: [
-        ["Angle", "Third node in the asbestos/mesothelioma cluster — reframed for a veteran audience via military-era asbestos exposure in old weaponry."],
-        ["Cross-referencing", "Cites a specific 2019 study in the International Journal of Radiation Biology on Navy veteran mesothelioma rates — specificity signals real research, not filler."],
-        ["Structure", "Broadens beyond the hazard into general veteran wellness (diet, mental health, support networks), keeping the piece useful even to readers with no asbestos exposure."]
-      ]
-    }
-  ],
-  home: [
-    {
-      title: "X Tips to Renovate Your Home on a Budget",
-      words: 1123,
-      excerpt: "It can take anywhere between $20,000 to $100,000 to renovate a house... but that cost can still be too much if you're on a tight budget.",
-      notes: [
-        ["Local SEO", "Geo-modified throughout for an Indianapolis audience, with local cost benchmarks ($9,000 avg.) that a national article wouldn't include."],
-        ["Link placement", "A local shower-replacement contractor link sits inside a section about bathroom fixtures — service + location anchor text."],
-        ["Hook", "Opens with a cost anchor (the $20K–$100K range) before revealing the budget-friendly angle — classic pattern interrupt."]
-      ]
-    },
-    {
-      title: "6 Home Improving Tips to Increase Your Rental Income",
-      words: 1161,
-      excerpt: "Appearances matter in real estate and if you want those extra thousands in your monthly rent, then take a look at the following budget-friendly home improvement tips.",
-      notes: [
-        ["Audience", "Written for landlords, not homeowners — a distinct commercial angle from the resale-value piece below."],
-        ["Link placement", "A UK-based emergency boiler repair link is placed inside a seasonal-risk aside (cold radiators) — shows the same technique adapted to a UK market."],
-        ["Structure", "Sub-bulleted tactics within each numbered section, for both fast scanning and keyword density on related terms (curb appeal, pet-friendly, fixtures)."]
-      ]
-    },
-    {
-      title: "5 Tips to Increase Your Home's Resale Value",
-      words: 970,
-      excerpt: "According to experts, essential upgrades to your house's exterior and sprucing up the curb appeal can improve your house's resale value by 7% to 14%.",
-      notes: [
-        ["E-E-A-T", "Every tip is backed by a cited statistic (HomeLight, National Association of Realtors, NAR generational report) — an authority-first, link-free piece."],
-        ["Contrast", "Deliberately not written for link building — shows range: some briefs call for pure informational authority content, not embedded backlinks."]
-      ]
-    },
-    {
-      title: "6 Things You Need to Know Before Commencing a Demolition",
-      words: 1037, cluster: true,
-      excerpt: "Demolition is serious business and it's not something weekend DIYers can do... a single mishap can lead to the risk of damage to both the surrounding people and property.",
-      notes: [
-        ["Cluster crossover", "Includes an asbestos risk-assessment section — the fourth node connecting back to the health cluster from a construction-safety angle."],
-        ["Link placement", "A local tree-removal-permit link (Baton Rouge) is placed inside a regulatory-permits section, matching real search behavior around local permit questions."]
-      ]
-    },
-    {
-      title: "5 Things to Consider When Renting a Shipping Container",
-      words: 1051,
-      excerpt: "Renting a shipping container is much cheaper and easier than purchasing one... a great option for short-term storage needs.",
-      notes: [
-        ["Niche/B2B", "A commercial storage/logistics angle rather than consumer home content — demonstrates range into B2B service topics."],
-        ["Structure", "Practical inspection checklist (holes, dents, chemical residue, rust) reads like genuine buyer research, which builds trust for a rental decision."]
-      ]
-    },
-    {
-      title: "6 Essential Questions to Ask a Mortgage Professional Advisor",
-      words: 958,
-      excerpt: "Mortgage advisors are the conduit between borrowers and lenders... they know how to negotiate the best deals for you.",
-      notes: [
-        ["Format", "FAQ-style H2s ('What Type of Loan is Best for Me?') mirror real search queries — built for featured snippet capture."],
-        ["Link placement", "An independent mortgage advisor link is placed at the point where the article recommends seeking professional guidance."]
-      ]
-    }
-  ],
-  business: [
-    {
-      title: "The Career Roadmap: 3 Creative Approaches to Career Education",
-      words: 883,
-      excerpt: "Thinking about your career shouldn't necessarily be a stressful activity because, with the right balance of curiosity and creativity, you can have a fun time with career education.",
-      notes: [
-        ["Format", "Thematic sections (arts-based learning, map worksheets, creative exploration) rather than a numbered list — matches a more reflective, less transactional topic."],
-        ["Link placement", "An online doctorate-in-education link is woven into a specific example, not the article's main thrust."]
-      ]
-    },
-    {
-      title: "Do You Need a Degree to Be an Entrepreneur?",
-      words: 1079,
-      excerpt: "There is no straight-up answer to this question... you'd rethink your strategy of not attending college if you look at the likes of Elon Musk and Jeff Bezos.",
-      notes: [
-        ["Structure", "Deliberately balanced — presents both the 'no degree needed' and 'degree helps' cases before landing on a nuanced conclusion, rather than a one-sided pitch."],
-        ["Link placement", "An MBA-program link appears only in the section actively discussing formal business education, keeping it contextually earned."]
-      ]
-    },
-    {
-      title: "7 Ways CEOs Can Ensure Effective Communication with Employees",
-      words: 1088,
-      excerpt: "Poor communication is the death of all good things within an organization and effective communication starts from the top.",
-      notes: [
-        ["E-E-A-T", "Cites a specific Workplace Survey statistic (68% via theEMPLOYEEapp) rather than an unsupported claim."],
-        ["Link placement", "A communications-degree link sits inside a section about leaders needing to build their own skills — natural fit, not forced."]
-      ]
-    },
-    {
-      title: "Six Signs of a Bad Digital Marketing Agency",
-      words: 1056,
-      excerpt: "Any individual with a firm grip on SEO basics will know that it is a great way to increase organic revenue, but it is not the only way.",
-      notes: [
-        ["Industry fluency", "A piece about evaluating marketing agencies that itself references SEO fundamentals, link building, and outsourcing practices — written with real working knowledge of the space, not just paraphrased marketing jargon."],
-        ["Structure", "Warning-sign framework (rather than a benefits list) taps into a different, high-intent search behavior: people vetting a purchase decision."]
-      ]
-    },
-    {
-      title: "Key Positions You Need to Fill in Your Company",
-      words: 1097,
-      excerpt: "A company is as good as its employees. However, it's not simply enough to have competent people running the business.",
-      notes: [
-        ["Information architecture", "Organized into three deliberate tiers (management, executive, operational) instead of one flat list — a small structural choice that makes a 12-role article easy to navigate."],
-      ]
-    },
-    {
-      title: "How Better Communication in an Organization Can Lead to Innovation",
-      words: 966,
-      excerpt: "Clear and cut communication within a business structure is the key to a culture of innovation.",
-      notes: [
-        ["E-E-A-T", "Cites a named 2004 paper from Creativity and Innovation Management — academic sourcing for a B2B thought-leadership piece."],
-        ["No embedded link strategy", "Written purely for authority and shareability, not for backlink placement — another example of range across brief types."]
-      ]
-    }
-  ]
-};
-
-function renderCases(list, containerId){
-  const container = document.getElementById(containerId);
-  list.forEach((item, i) => {
-    const el = document.createElement('div');
-    el.className = 'case';
-    el.innerHTML = `
-      <div class="case-head">
-        <h3>${item.title}${item.cluster ? ' <span class="mono" style="font-size:0.7rem;color:var(--ochre);border:1px solid var(--ochre);border-radius:10px;padding:2px 8px;margin-left:8px;">CLUSTER</span>' : ''}</h3>
-        <div style="display:flex;align-items:center;gap:14px;">
-          <span class="case-meta">${item.words} words</span>
-          <span class="chevron">›</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-body-inner">
-          <div class="manuscript">
-            <span class="label">Excerpt</span>
-            <blockquote>${item.excerpt}</blockquote>
-          </div>
-          <div class="annotations">
-            <span class="label">Strategy notes</span>
-            ${item.notes.map(n => `<div class="note"><div class="dot"></div><p><b>${n[0]}:</b> ${n[1]}</p></div>`).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-    el.querySelector('.case-head').addEventListener('click', () => {
-      const isOpen = el.classList.contains('open');
-      const body = el.querySelector('.case-body');
-      if(isOpen){
-        body.style.maxHeight = null;
-        el.classList.remove('open');
-      } else {
-        el.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
+  const filters = document.querySelectorAll('.filter');
+  const cards = document.querySelectorAll('.work-card');
+  filters.forEach(btn => btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      card.style.display = filter === 'all' || card.dataset.category === filter ? '' : 'none';
     });
-    container.appendChild(el);
+  }));
+  document.querySelector('.menu').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('open');
   });
-}
-
-renderCases(DATA.health, 'health-cases');
-renderCases(DATA.home, 'home-cases');
-renderCases(DATA.business, 'business-cases');
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
+    document.querySelector('nav').classList.remove('open');
+  }));
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
